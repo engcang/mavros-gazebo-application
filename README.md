@@ -1,2 +1,53 @@
-# mavros-gazebo-application
-mavros-gazebo-application
+# MAVROS-Gazebo simulation build and application
++ Need Ubuntu with ROS installed
+
+<br><br>
+
+### Installation 
++ Mavros and requirements
+~~~shell
+    $ sudo apt-get install ros-<distro>-mavros ros-<distro>-mavros-extras
+    $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+    $ ./install_geographiclib_datasets.sh
+    $ cd ~/catkin_ws/src/ && git clone https://github.com/PX4/Firmware.git
+    $ source Firmware/Tools/setup/ubuntu.sh
+~~~
++ To run, set up the path and environments
+~~~shell
+    $ DONT_RUN=1 make px4_sitl_default gazebo #SITL build
+    $ source ~/catkin_ws/devel/setup.bash    # (optional)
+    $ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
+    $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
+    $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
+    $ roslaunch px4 mavros_posix_sitl.launch
+~~~
++ To remember setup,
+~~~shell
+    $ gedit ~/.bashrc
+    # Copy - past below and save, (path should be edited)
+    #PX4, mavros
+    export GAZEBO_PLUGIN_PATH=/home/<PCname>/catkin_ws/src/Firmware/build/px4_sitl_default/build_gazebo
+    export GAZEBO_MODEL_PATH=/home/<PCname>/catkin_ws/src/Firmware/Tools/sitl_gazebo/models
+    export LD_LIBRARY_PATH=/home/<PCname>/catkin_ws/devel/lib:/opt/ros/melodic/lib:/home/<PCname>/catkin_ws/src/Firmware/build/px4_sitl_default/build_gazebo
+
+    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/catkin_ws/src/Firmware
+    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/catkin_ws/src/Firmware/Tools/sitl_gazebo
+~~~
+
+<br><br>
+
+### Execution
++ To run Gazebo with default setup, with ROS
+~~~shell
+    $ roslaunch px4 mavros_posix_sitl.launch
+~~~
++ To control with simple square path,
+~~~shell
+    $ git clone <this repository>
+    $ python <clone directory>/python_offb.py
+~~~
+
+
+### Mission
++ To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
++ RGB-D cam -> Equip R200 using iris_fpv model
