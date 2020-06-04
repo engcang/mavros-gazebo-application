@@ -14,6 +14,7 @@
 ~~~
 + To run, set up the path and environments
 ~~~shell
+    $ cd ~/catkin_ws/src/Firmware
     $ DONT_RUN=1 make px4_sitl_default gazebo #SITL build
     $ source ~/catkin_ws/devel/setup.bash    # (optional)
     $ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
