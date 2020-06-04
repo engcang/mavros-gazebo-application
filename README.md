@@ -11,6 +11,8 @@
     $ ./install_geographiclib_datasets.sh
     $ cd ~/catkin_ws/src/ && git clone https://github.com/PX4/Firmware.git
     $ source Firmware/Tools/setup/ubuntu.sh
+    # if above makes errors, just run below instead
+    $ sudo apt-get install python-catkin-tools python-numpy python3-pip python3-numpy python3-empy python3-toml python3-packaging python3-jinja2
 ~~~
 + To run, set up the path and environments
 ~~~shell
