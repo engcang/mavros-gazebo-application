@@ -9,22 +9,22 @@
     $ sudo apt-get install ros-<distro>-mavros ros-<distro>-mavros-extras
     $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     $ ./install_geographiclib_datasets.sh
-    $ cd ~/catkin_ws/src/ && git clone https://github.com/PX4/Firmware.git
+    $ cd ~/ && git clone https://github.com/PX4/Firmware.git
     $ source Firmware/Tools/setup/ubuntu.sh
     # if above makes errors, just run below instead
     $ sudo apt-get install python-catkin-tools python-numpy python3-pip python3-numpy python3-empy python3-toml python3-packaging python3-jinja2
 ~~~
 + To run, set up the path and environments
 ~~~shell
-    $ cd ~/catkin_ws/src/Firmware
+    $ cd ~/Firmware
     
     # important!!
     $ sudo apt install ros-melodic-gazebo-plugins
 
-    # if error from below, $ mkdir build && cd build && cmake .. && make -j3
-    $ DONT_RUN=1 make px4_sitl_default gazebo #SITL build
+    # original(not recommend) : $ DONT_RUN=1 make px4_sitl_default gazebo #SITL build
+    # recommend below
+    $ mkdir build && cd build && cmake .. && make -j3
     
-    $ source ~/catkin_ws/devel/setup.bash    # (optional)
     $ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
     $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
     $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
