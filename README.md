@@ -20,10 +20,8 @@
     
     # important!!
     $ sudo apt install ros-melodic-gazebo-plugins
-
-    # original(not recommend) : $ DONT_RUN=1 make px4_sitl_default gazebo #SITL build
-    # recommend below
-    $ mkdir build && cd build && cmake .. && make -j3
+    
+    $ DONT_RUN=1 make px4_sitl_default gazebo
     
     $ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
     $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
@@ -35,12 +33,12 @@
     $ gedit ~/.bashrc
     # Copy - past below and save, (path should be edited)
     #PX4, mavros
-    export GAZEBO_PLUGIN_PATH=/home/<PCname>/catkin_ws/src/Firmware/build/px4_sitl_default/build_gazebo
-    export GAZEBO_MODEL_PATH=/home/<PCname>/catkin_ws/src/Firmware/Tools/sitl_gazebo/models
-    export LD_LIBRARY_PATH=/home/<PCname>/catkin_ws/devel/lib:/opt/ros/melodic/lib:/home/<PCname>/catkin_ws/src/Firmware/build/px4_sitl_default/build_gazebo
+    export GAZEBO_PLUGIN_PATH=/home/<PCname>/Firmware/build/px4_sitl_default/build_gazebo
+    export GAZEBO_MODEL_PATH=/home/<PCname>/Firmware/Tools/sitl_gazebo/models
+    export LD_LIBRARY_PATH=/home/<PCname>/catkin_ws/devel/lib:/opt/ros/melodic/lib:/home/<PCname>/Firmware/build/px4_sitl_default/build_gazebo
 
-    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/catkin_ws/src/Firmware
-    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/catkin_ws/src/Firmware/Tools/sitl_gazebo
+    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/Firmware
+    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/Firmware/Tools/sitl_gazebo
 ~~~
 
 <br><br>
@@ -59,4 +57,3 @@
 
 ### Mission
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
-+ RGB-D cam -> Equip R200 using iris_fpv model
