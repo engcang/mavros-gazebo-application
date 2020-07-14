@@ -1,5 +1,6 @@
 # MAVROS-Gazebo simulation build and application
 + Need Ubuntu with ROS installed
++ Simple [Joystick](https://asia.playstation.com/ko-kr/accessories/dualshock4/) Controller code implemented
 
 <br><br>
 
@@ -57,3 +58,5 @@
 
 ### Mission
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
++ use Joystick to manually control
++ simple rectangular trajectory following code implemented
