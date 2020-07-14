@@ -3,9 +3,13 @@
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches MAVROS, PX4 SITL, Gazebo environment, and spawns vehicle -->
     <!-- vehicle pose -->
+
+    <node name="ctrl_joy" pkg="px4" type="mavros_joy_controller.py" output="screen"/>
+    <node name="joy_ros" pkg="joy" type="joy_node"/>
+
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
-    <arg name="z" default="0"/>
+    <arg name="z" default="0.1"/>
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
@@ -13,7 +17,7 @@
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
     <arg name="sensor" default="iris_fpv_cam"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/mason.world"/>
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg sensor)/$(arg sensor).sdf"/>
 
     <!-- gazebo configs -->
