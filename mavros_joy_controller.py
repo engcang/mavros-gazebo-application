@@ -8,6 +8,7 @@ Created on Tue Feb 26 02:02:03 2019
 ''' import libraries '''
 import time
 from tf.transformations import euler_from_quaternion
+from math import cos, sin
 import numpy as np
 
 import rospy
@@ -34,13 +35,13 @@ global max_vel_x
 global max_vel_y
 global max_vel_z
 global yaw_rate
-yaw_rate = 3
+yaw_rate = 2
 
 r2d = 180/np.pi
 d2r = np.pi/180
-max_ang_x = 15
-max_ang_y = 15
-max_ang_z = 15
+max_ang_x = 5
+max_ang_y = 5
+max_ang_z = 5
 
 ''' class '''
 class robot():
@@ -86,15 +87,15 @@ def input(rbt):
 ##Mode 2, default
 #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
     if rbt.mode==2:
-        vel_input.twist.linear.x= ( rbt.joy.axes[4]*max_ang_x)
-        vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_ang_y)
+        vel_input.twist.linear.x= ( rbt.joy.axes[4]*max_ang_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_ang_y)*sin(rbt.yaw)
+        vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_ang_y)*cos(rbt.yaw) + ( rbt.joy.axes[4]*max_ang_x)*sin(rbt.yaw)
         vel_input.twist.linear.z= ( rbt.joy.axes[1]*max_ang_z)
         vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
 ##Mode 1
 #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
     elif rbt.mode==1:
-        vel_input.twist.linear.x= ( rbt.joy.axes[1]*max_ang_x)
-        vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_ang_y)
+        vel_input.twist.linear.x= ( rbt.joy.axes[1]*max_ang_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_ang_y)*sin(rbt.yaw)
+        vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_ang_y)*cos(rbt.yaw) + ( rbt.joy.axes[1]*max_ang_x)*sin(rbt.yaw)
         vel_input.twist.linear.z= ( rbt.joy.axes[4]*max_ang_z)
         vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
 
