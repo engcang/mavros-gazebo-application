@@ -45,3 +45,11 @@
   </model>
 </sdf>
 ~~~
+
+<br>
+
+### Making new model combining two or more models
++ Publish joint as ***ROS tf*** using the relationship below
+  <p align="center">
+  <img src="https://github.com/engcang/vins-application/blob/master/pitching.png" width="600"/>
+  </p>
