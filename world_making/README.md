@@ -51,5 +51,5 @@
 ### Making new model combining two or more models
 + Publish joint as ***ROS tf*** using the relationship below
   <p align="center">
-  <img src="https://github.com/engcang/vins-application/blob/master/pitching.png" width="600"/>
+  <img src="https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/tf.png" width="600"/>
   </p>
