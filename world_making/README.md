@@ -50,6 +50,6 @@
 
 ### Making new model combining two or more models
 + Publish joint as ***ROS tf*** using the relationship below
-  <p align="center">
+  <p align="left">
   <img src="https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/tf.png" width="300"/>
   </p>
