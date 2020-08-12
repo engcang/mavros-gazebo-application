@@ -27,6 +27,16 @@
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
 ~~~
++ Make world with **sky**
+~~~xml
+    <scene>
+      <sky>
+        <clouds>
+          <speed>5</speed>
+        </clouds>
+      </sky>
+    </scene>
+~~~
 
 <br>
 
