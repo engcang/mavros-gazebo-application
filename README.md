@@ -58,5 +58,9 @@
 
 ### Mission
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
-+ use Joystick to manually control
-+ simple rectangular trajectory following code implemented
++ use Joystick to manually control -> it supports **mode 1,2** and **Velocity/Attitude/Rate control**
+~~~shell
+    $ git clone <this repository>
+    $ python <clone directory>/scripts/mavors_joy_controller.py
+~~~
+
