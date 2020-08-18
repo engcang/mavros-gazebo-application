@@ -4,10 +4,12 @@
     <!-- launches MAVROS, PX4 SITL, Gazebo environment, and spawns vehicle -->
     <!-- vehicle pose -->
 
+    <node name="rvizualizer" pkg="rviz" type="rviz" args="-d /home/mason/Desktop/models/exploration/exploration.rviz"/>
     <node name="ctrl_joy" pkg="px4" type="mavros_joy_controller.py" output="screen"/>
+    <node name="broadcaster" pkg="px4" type="tf_broadcaster.py"/>
     <node name="joy_ros" pkg="joy" type="joy_node"/>
 
-    <arg name="x" default="0"/>
+    <arg name="x" default="-20"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0.1"/>
     <arg name="R" default="0"/>
@@ -16,9 +18,9 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="iris"/>
-    <arg name="sensor" default="iris_fpv_cam"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/mason.world"/>
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg sensor)/$(arg sensor).sdf"/>
+    <arg name="sensor" default="iris_kinect_outstanding"/>
+    <arg name="world" default="/home/mason/Desktop/models/mili_tech/mili.world"/>
+    <arg name="sdf" default="/home/mason/Desktop/models/exploration/$(arg sensor)/$(arg sensor).sdf"/>
 
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
