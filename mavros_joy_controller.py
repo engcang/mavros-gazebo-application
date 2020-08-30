@@ -70,13 +70,14 @@ class robot():
         self.rate = rospy.Rate(30)
         self.mode = 2 #default is mode 2
         self.mission = 0
+        self.hold = 0 #to stop sending input shortly
 
     def pose_callback(self, msg):
         global mav_check
-        mav_check=1
         self.truth=msg.pose.position
         orientation_list = [msg.pose.orientation.x, msg.pose.orientation.y, msg.pose.orientation.z, msg.pose.orientation.w]
         (self.roll, self.pitch, self.yaw) = euler_from_quaternion(orientation_list)
+        mav_check=1
 
     def joy_callback(self, msg):
         self.joy = msg
@@ -94,6 +95,8 @@ class robot():
                 self.arming(True)
             if self.joy.buttons[3]==1:
                 self.offboarding(base_mode=0, custom_mode="OFFBOARD")
+            if self.joy.buttons[0]==1:
+                self.hold = self.hold+1
 
 def input(rbt):
     global d2r
@@ -107,97 +110,103 @@ def input(rbt):
     global max_vel_z
     global yaw_rate
 
-    if rbt.mission%3 == 0: #velocity mode
-        vel_input=TwistStamped()
+    if mav_ctr.hold%2==0:
+        if rbt.mission%3 == 0: #velocity mode
+            vel_input=TwistStamped()
 
-        ##Mode 2, default
-        #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
-        if rbt.mode==2:
-            vel_input.twist.linear.x= ( rbt.joy.axes[4]*max_vel_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_vel_y)*sin(rbt.yaw)
-            vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_vel_y)*cos(rbt.yaw) + ( rbt.joy.axes[4]*max_vel_x)*sin(rbt.yaw)
-            vel_input.twist.linear.z= ( rbt.joy.axes[1]*max_vel_z)
-            vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
-        ##Mode 1
-        #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
-        elif rbt.mode==1:
-            vel_input.twist.linear.x= ( rbt.joy.axes[1]*max_vel_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_vel_y)*sin(rbt.yaw)
-            vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_vel_y)*cos(rbt.yaw) + ( rbt.joy.axes[1]*max_vel_x)*sin(rbt.yaw)
-            vel_input.twist.linear.z= ( rbt.joy.axes[4]*max_vel_z)
-            vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
+            ##Mode 2, default
+            #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
+            if rbt.mode==2:
+                vel_input.twist.linear.x= ( rbt.joy.axes[4]*max_vel_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_vel_y)*sin(rbt.yaw)
+                vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_vel_y)*cos(rbt.yaw) + ( rbt.joy.axes[4]*max_vel_x)*sin(rbt.yaw)
+                vel_input.twist.linear.z= ( rbt.joy.axes[1]*max_vel_z)
+                vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
+            ##Mode 1
+            #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
+            elif rbt.mode==1:
+                vel_input.twist.linear.x= ( rbt.joy.axes[1]*max_vel_x)*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_vel_y)*sin(rbt.yaw)
+                vel_input.twist.linear.y= ( rbt.joy.axes[3]*max_vel_y)*cos(rbt.yaw) + ( rbt.joy.axes[1]*max_vel_x)*sin(rbt.yaw)
+                vel_input.twist.linear.z= ( rbt.joy.axes[4]*max_vel_z)
+                vel_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
 
-        print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
-        print("Mission:< %d >, Input : X: %.2f  Y: %.2f  Z: %.2f  Yaw: %.2f "%(rbt.mission%3, vel_input.twist.linear.x, vel_input.twist.linear.y, vel_input.twist.linear.z, vel_input.twist.angular.z))
+            print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
+            print("Mission:< %d >, Input : X: %.2f  Y: %.2f  Z: %.2f  Yaw: %.2f "%(rbt.mission%3, vel_input.twist.linear.x, vel_input.twist.linear.y, vel_input.twist.linear.z, vel_input.twist.angular.z))
+            print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
+            print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
+
+            vel_input.header.stamp = rospy.Time.now()
+            rbt.local_vel_pub.publish(vel_input)
+
+        elif rbt.mission%3 == 1: #angle mode
+            # rospy.set_param('/mavros/setpoint_attitude/reverse_thrust', True)
+            ang_input=AttitudeTarget()
+
+            ##Mode 2, default
+            #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
+            if rbt.mode==2:
+                des_roll = -rbt.joy.axes[3]*max_ang_x
+                des_pitch = rbt.joy.axes[4]*max_ang_y
+                des_yaw = rbt.yaw + (rbt.joy.axes[0])
+                (x,y,z,w)=quaternion_from_euler(des_roll, des_pitch, des_yaw)
+                ang_input.orientation.x=x
+                ang_input.orientation.y=y
+                ang_input.orientation.z=z
+                ang_input.orientation.w=w
+                ang_input.thrust = 0.57 + (rbt.joy.axes[1])*0.4
+            ##Mode 1
+            #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
+            elif rbt.mode==1:
+                des_roll = -rbt.joy.axes[3]*max_ang_x
+                des_pitch = rbt.joy.axes[1]*max_ang_y
+                des_yaw = rbt.yaw + (rbt.joy.axes[0])
+                (x,y,z,w)=quaternion_from_euler(des_roll, des_pitch, des_yaw)
+                ang_input.orientation.x=x
+                ang_input.orientation.y=y
+                ang_input.orientation.z=z
+                ang_input.orientation.w=w
+                ang_input.thrust = 0.57 + (rbt.joy.axes[4])*0.4
+
+            print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
+            print("Mission:< %d >, Input : R: %.2f  P: %.2f  Y: %.2f  thrust: %.2f "%(rbt.mission%3, des_roll*r2d, des_pitch*r2d, des_yaw*r2d, ang_input.thrust))
+            print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
+            print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
+
+            ang_input.header.stamp = rospy.Time.now()
+            rbt.angle_pub.publish(ang_input)
+
+        elif rbt.mission%3 == 2: #rate mode
+
+            rate_input=TwistStamped()
+            thrust_input=Thrust()
+
+    #        ##Mode 2, default
+    #        #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
+            if rbt.mode==2:
+                rate_input.twist.angular.y = -rbt.joy.axes[3]*max_rate_x #x,y are conversed... I hate px4
+                rate_input.twist.angular.x = -rbt.joy.axes[4]*max_rate_y
+                rate_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
+                thrust_input.thrust = 0.57 + (rbt.joy.axes[1])*0.4
+    #        ##Mode 1
+    #        #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
+            elif rbt.mode==1:
+                rate_input.twist.angular.y = -rbt.joy.axes[3]*max_rate_x #x,y are conversed... I hate px4
+                rate_input.twist.angular.x = -rbt.joy.axes[1]*max_rate_y
+                rate_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
+                thrust_input.thrust = 0.57 + (rbt.joy.axes[4])*0.4
+
+            print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
+            print("Mission:< %d >, Input : R: %.2f  P: %.2f  Y: %.2f  thrust: %.2f "%(rbt.mission%3, rate_input.twist.angular.x*r2d, rate_input.twist.angular.y*r2d, rate_input.twist.angular.z*r2d, thrust_input.thrust))
+            print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
+            print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
+
+            thrust_input.header.stamp = rate_input.header.stamp = rospy.Time.now()
+            rbt.rate_pub.publish(rate_input)
+            rbt.thrust_pub.publish(thrust_input)
+    else:
+        print("Hold now, press Button[0] to control again")
         print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
         print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
 
-        vel_input.header.stamp = rospy.Time.now()
-        rbt.local_vel_pub.publish(vel_input)
-
-    elif rbt.mission%3 == 1: #angle mode
-        # rospy.set_param('/mavros/setpoint_attitude/reverse_thrust', True)
-        ang_input=AttitudeTarget()
-
-        ##Mode 2, default
-        #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
-        if rbt.mode==2:
-            des_roll = -rbt.joy.axes[3]*max_ang_x
-            des_pitch = rbt.joy.axes[4]*max_ang_y
-            des_yaw = rbt.yaw + (rbt.joy.axes[0])
-            (x,y,z,w)=quaternion_from_euler(des_roll, des_pitch, des_yaw)
-            ang_input.orientation.x=x
-            ang_input.orientation.y=y
-            ang_input.orientation.z=z
-            ang_input.orientation.w=w
-            ang_input.thrust = 0.6 + (rbt.joy.axes[1])*0.4
-        ##Mode 1
-        #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
-        elif rbt.mode==1:
-            des_roll = -rbt.joy.axes[3]*max_ang_x
-            des_pitch = rbt.joy.axes[1]*max_ang_y
-            des_yaw = rbt.yaw + (rbt.joy.axes[0])
-            (x,y,z,w)=quaternion_from_euler(des_roll, des_pitch, des_yaw)
-            ang_input.orientation.x=x
-            ang_input.orientation.y=y
-            ang_input.orientation.z=z
-            ang_input.orientation.w=w
-            ang_input.thrust = 0.6 + (rbt.joy.axes[4])*0.4
-
-        print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
-        print("Mission:< %d >, Input : R: %.2f  P: %.2f  Y: %.2f  thrust: %.2f "%(rbt.mission%3, des_roll*r2d, des_pitch*r2d, des_yaw*r2d, ang_input.thrust))
-        print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
-        print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
-
-        ang_input.header.stamp = rospy.Time.now()
-        rbt.angle_pub.publish(ang_input)
-
-    elif rbt.mission%3 == 2: #rate mode
-
-        rate_input=TwistStamped()
-        thrust_input=Thrust()
-
-#        ##Mode 2, default
-#        #joy_axes: {pitch: 4, roll: 3, yaw: 0, vertical: 1}
-        if rbt.mode==2:
-            rate_input.twist.angular.y = -rbt.joy.axes[3]*max_rate_x #x,y are conversed... I hate px4
-            rate_input.twist.angular.x = -rbt.joy.axes[4]*max_rate_y
-            rate_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
-            thrust_input.thrust = 0.6 + (rbt.joy.axes[1])*0.4
-#        ##Mode 1
-#        #joy_axes: {pitch: 1, roll: 3, yaw: 0, vertical: 4}
-        elif rbt.mode==1:
-            rate_input.twist.angular.y = -rbt.joy.axes[3]*max_rate_x #x,y are conversed... I hate px4
-            rate_input.twist.angular.x = -rbt.joy.axes[1]*max_rate_y
-            rate_input.twist.angular.z = yaw_rate*(rbt.joy.axes[0])
-            thrust_input.thrust = 0.6 + (rbt.joy.axes[4])*0.4
-
-        print("Mode < %d > now, press L1 or R1 to change, Press Button[2],[3] to arm/disarm"%rbt.mode)
-        print("Mission:< %d >, Input : R: %.2f  P: %.2f  Y: %.2f  thrust: %.2f "%(rbt.mission%3, rate_input.twist.angular.x*r2d, rate_input.twist.angular.y*r2d, rate_input.twist.angular.z*r2d, thrust_input.thrust))
-        print("Position(Meter): X: %.2f Y: %.2f Z: %.2f "%(rbt.truth.x, rbt.truth.y, rbt.truth.z))
-        print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
-
-        thrust_input.header.stamp = rate_input.header.stamp = rospy.Time.now()
-        rbt.rate_pub.publish(rate_input)
-        rbt.thrust_pub.publish(thrust_input)
 ##############################################################################################
 
 mav_ctr = robot()
