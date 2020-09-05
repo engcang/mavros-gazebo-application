@@ -8,8 +8,27 @@
 
 ### ● Available **color** and **textures**
 + check **/usr/share/gazebo-9/media/materials/scripts/gazebo.material**
-    + From line **129**
-+ check **/usr/share/gazebo-9/media/materials/textures/**
+    + From line **129**, use the **color** as below => animation option included in ***CloudySky***
+    ~~~xml
+      <visual name='name'>
+        <material>
+          <script>
+            <name>Gazebo/CloudySky</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    ~~~
++ check **/usr/share/gazebo-9/media/materials/textures/**, use as below
+~~~xml
+      <visual name='name'>
+        <material>
+          <script>
+            <normal>file://media/materials/textures/flat_normal.png</normal>
+          </script>
+        </material>
+      </visual>
+~~~
 
 ### ● Make world faster, less accurate for real-time 
 + set bigger **max_step_size** and lower **real_time_update_rate**
@@ -54,7 +73,7 @@
 ### ● Make new model with .dae
 + download .dae file from [SketchUp data](https://3dwarehouse.sketchup.com)
 + And edit it, as wanted [SketchUp](https://app.sketchup.com/app?hl=en)
-+ remove ***lines***
++ remove ***lines*** using [the file](https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/dae_line_remover.py)
 + make new folders including ***.config***, ***.sdf***
 + .sdf file should be like below
 ~~~xml
