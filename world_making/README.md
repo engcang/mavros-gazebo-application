@@ -30,6 +30,8 @@
       </visual>
 ~~~
 
+<br>
+
 ### ● Make world faster, less accurate for real-time 
 + set bigger **max_step_size** and lower **real_time_update_rate**
 ~~~xml
@@ -142,3 +144,9 @@
   <p align="left">
   <img src="https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/tf.png" width="300"/>
   </p>
+
+<br>
+
+### ● Height Map
++ need binary + alpha image in *.png* extension -> use [GIMP](https://www.gimp.org/) to draw, reference [video](https://vimeo.com/58409707)
++ To transform binary image -> binary+alpha, use [this file](https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/rgb2rgba_texture.py)
