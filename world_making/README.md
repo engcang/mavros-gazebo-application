@@ -148,8 +148,8 @@
 <br>
 
 ### ● Height Map
-+ need binary + alpha image in *.png* extension -> use [GIMP](https://www.gimp.org/) to draw, reference [video](https://vimeo.com/58409707)
-+ To transform binary image -> binary+alpha, use [this file](https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/rgb2rgba_texture.py)
++ need binary image in *.png* extension -> use [GIMP](https://www.gimp.org/) to draw, reference [video](https://vimeo.com/58409707)
++ for *texture*, only RGBA is used. To transform RGB image -> RGB + alpha, use [this file](https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/rgb2rgba_texture.py)
 + example
 ~~~xml
 <?xml version="1.0" ?>
