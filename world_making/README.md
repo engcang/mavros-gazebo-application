@@ -11,7 +11,8 @@
     + From line **129**
 + check **/usr/share/gazebo-9/media/materials/textures/**
 
-### ● Make world faster, less accurate for real-time -> set bigger **max_step_size** and lower **real_time_update_rate**
+### ● Make world faster, less accurate for real-time 
++ set bigger **max_step_size** and lower **real_time_update_rate**
 ~~~xml
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
