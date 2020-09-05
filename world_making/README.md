@@ -150,3 +150,56 @@
 ### ● Height Map
 + need binary + alpha image in *.png* extension -> use [GIMP](https://www.gimp.org/) to draw, reference [video](https://vimeo.com/58409707)
 + To transform binary image -> binary+alpha, use [this file](https://github.com/engcang/mavros-gazebo-application/blob/master/world_making/rgb2rgba_texture.py)
++ example
+~~~xml
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="mt_background">
+    <static>true</static>
+    <link name="bg_link">
+      <collision name="collision">
+        <geometry>
+          <heightmap>
+            <uri>model://mt_background/materials/textures/heightt.png</uri>
+            <size>400 500 150</size>
+            <pos>35 5 -72</pos>
+          </heightmap>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <heightmap>
+            <texture>
+              <diffuse>file://media/materials/textures/grass_diffusespecular.png</diffuse>
+              <normal>file://media/materials/textures/flat_normal.png</normal>
+              <size>5</size>
+            </texture>
+            <texture>
+              <diffuse>model://mt_background/materials/textures/new_grass_dry.png</diffuse>
+              <normal>file://media/materials/textures/flat_normal.png</normal>
+              <size>20</size>
+            </texture>
+            <texture>
+              <diffuse>file://media/materials/textures/fungus_diffusespecular.png</diffuse>
+              <normal>file://media/materials/textures/flat_normal.png</normal>
+              <size>15</size>
+            </texture>
+            <blend>
+              <min_height>55</min_height>
+              <fade_dist>2</fade_dist>
+            </blend>
+            <blend>
+              <min_height>85</min_height>
+              <fade_dist>2</fade_dist>
+            </blend>
+            <uri>model://mt_background/materials/textures/heightt.png</uri>
+            <size>400 500 150</size>
+            <pos>35 5 -72</pos>
+          </heightmap>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
+~~~
