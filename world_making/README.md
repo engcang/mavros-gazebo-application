@@ -3,7 +3,15 @@
 + using .sdf files [format](http://sdformat.org/spec?ver=1.7&elem=sdf)
 + using .dae files from [SketchUp data](https://3dwarehouse.sketchup.com) and [SketchUp](https://app.sketchup.com/app?hl=en)
 + using Gazebo tutorials
-+ Make world faster, less accurate for real-time -> set bigger **max_step_size** and lower **real_time_update_rate**
+
+<br>
+
+### ● Available **color** and **textures**
++ check **/usr/share/gazebo-9/media/materials/scripts/gazebo.material**
+    + From line **129**
++ check **/usr/share/gazebo-9/media/materials/textures/**
+
+### ● Make world faster, less accurate for real-time -> set bigger **max_step_size** and lower **real_time_update_rate**
 ~~~xml
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
@@ -27,7 +35,9 @@
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
 ~~~
-+ Make world with **sky**
+<br>
+
+### ● Make world with **sky**
 ~~~xml
     <scene>
       <sky>
