@@ -64,3 +64,11 @@
     $ python <clone directory>/scripts/mavors_joy_controller.py
 ~~~
 
+<br>
+
+### Use without GPS
++ check [here](https://dev.px4.io/v1.9.0/en/ros/external_position_estimation.html)
++ Publish vision data e.g. VIO as **geometry_msgs/PoseStamped** type message into topic **/mavros/vision_pose/pose**
++ Change **EKF2_AID_MASK** parameter at QGroundControl
+  + Uncheck *use GPS*
+  + Check *vision position fusion* and *vision yaw fusion*
