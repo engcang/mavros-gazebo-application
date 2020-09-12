@@ -34,6 +34,7 @@
 
 ### ● Make world faster, less accurate for real-time 
 + set bigger **max_step_size** and lower **real_time_update_rate**
++ ***IMU_GYRO_RATEMAX*** and ***IMU_INTEG_RATE*** should be same with **real_time_update_rate** refer [here](https://github.com/PX4/Firmware/issues/15184)
 ~~~xml
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
