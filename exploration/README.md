@@ -1,19 +1,19 @@
-## Mapping using Octomap
+## Exploration, Active SLAM
 
 <br>
 <br>
 
-### Prerequsties 
+### ● Prerequsties
 + Octomap
 ~~~shell
   $ sudo apt install ros-<distro>-octomap* -y
   $ roslaunch octomap_server mapping.launch
 ~~~
-
-<br>
-
 + RGB-D Sensor or LiDAR sensor in Gazebo (ROS compatible)
   + Used Kinect in my case, [made one as here](http://gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros)
+
+<br>
+<br>
 
 ### 1. [MBP](https://github.com/unr-arl/mbplanner_ros) from Kostas Alexsis
 + **Important!!** -> when having **PX4 SITL**, make sure to backup one **.so** file
