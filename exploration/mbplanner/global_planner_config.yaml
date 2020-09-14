@@ -24,7 +24,7 @@ SensorParams:
   sensor_list:      ["VLP16"]
   VLP16:
     type:           kLidar
-    max_range:      15.0
+    max_range:      20.0
     center_offset:  [0.0, 0.0, 0.0]
     rotations:      [0.0, 0.0, 0.0]
     fov:            [rad(2*pi), rad(pi/6)]
@@ -37,14 +37,14 @@ SensorParams:
 BoundedSpaceParams:
   Global:
     type:           kCuboid
-    min_val:        [-30.0, -30.0, -0.1]
-    max_val:        [100.0, 100.0, 8.0]
+    min_val:        [-30.0, -30.0, -0.0]
+    max_val:        [100, 100.0, 8.0]
   Local:
     type:           kCuboid
     min_val:        [-20.0, -20.0, -4.5]
     max_val:        [20.0, 20.0, 4.5]
-    min_extension:  [-20.0, -20.0, -8.0]
-    max_extension:  [20.0, 20.0, 8.0]
+    min_extension:  [-20.0, -20.0, -6.0]
+    max_extension:  [20.0, 20.0, 6.0]
 #-------------------------------------------------------------------------------
 # SAMPLING POLICY CONFIGURATION
 #   Sample space limited to 4 states: X, Y, Z, and Heading
@@ -75,11 +75,11 @@ PlanningParams:
   rr_mode:          kGraph
   bound_mode:       kExtremeBound
   exp_sensor_list:  ["VLP16"]
-  v_max:            3.0
-  yaw_rate_max:     0.8
+  v_max:            2.5
+  yaw_rate_max:     0.5
   yaw_tangent_correction: true
   edge_length_min:  0.2
-  edge_length_max:  15.0
+  edge_length_max:  5.0
   edge_overshoot:   0.0 #m
   num_vertices_max: 200
   num_edges_max:    3000
@@ -87,7 +87,7 @@ PlanningParams:
   num_loops_max:    4000
   nearest_range:    3.0
   nearest_range_min: 0.5 # >= edge_length_min
-  nearest_range_max: 10.0 # <= edge_length_max
+  nearest_range_max: 5.0 # <= edge_length_max
   use_current_state: true
   use_ray_model_for_volumetric_gain: true
   path_length_penalty: 0.1
