@@ -4,8 +4,8 @@ init_motion_enable: true
 planner_trigger_lead_time: 0.8
 smooth_heading_enable: true
 init_motion:
-  z_takeoff: 3.5
-  z_drop: 1.2
+  z_takeoff: 2.5
+  z_drop: 0.3
   x_forward: 0.0
 
 # Group related parameters to be shared between nodes.
