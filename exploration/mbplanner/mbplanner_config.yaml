@@ -22,21 +22,21 @@ MBParams:
   use_angles: 1  # When this is 1, ax is the direction of acceleration (0-2pi) in the x-y plane, ay is the magnitude
   ax_min: 0
   ay_min: 0.0
-  az_min: -1.5
+  az_min: -0.8
   ax_max: 6.28
-  ay_max: 5.0
-  az_max: 1.5
-  v_max: 3.0
+  ay_max: 4.0
+  az_max: 0.8
+  v_max: 2.5
   
   # Tree generation parameters:
   use_current_state: 0
   exp_dir: 0.0
-  t: 1.0
-  dt: 0.20
+  t: 1.5
+  dt: 0.25
   x_bias: 1
-  a_cone: 1.8
+  a_cone: 1.0
   iterations: 7
-  branch_limit: 5
+  branch_limit: 6
   sample_steps: 15
   min_edge_length: 3
   second_lvl_samples: 0
@@ -62,7 +62,7 @@ MBParams:
 
   yaw_enable: 1
   min_path_length: 0.15
-  max_traverse_length: 20.0
+  max_traverse_length: 10.0
   safety_distance: 4.0
   safety_aware_enable: true
 #-------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ SensorParams:
   sensor_list:      ["VLP16"]
   VLP16:
     type:           kLidar
-    max_range:      15.0
+    max_range:      20.0
     center_offset:  [0.0, 0.0, 0.0]
     rotations:      [0.0, 0.0, 0.0]
     fov:            [rad(2*pi), rad(pi/18)]
@@ -88,14 +88,14 @@ SensorParams:
 BoundedSpaceParams:
   Global:
     type:           kCuboid
-    min_val:        [-30.0, -30.0, -0.1]
+    min_val:        [-30.0, -30.0, -0.0]
     max_val:        [100.0, 100.0, 8.0]
   Local:
     type:           kCuboid
     min_val:        [-20.0, -20.0, -4.5]
     max_val:        [20.0, 20.0, 4.5]
-    min_extension:  [-20.0, -20.0, -8.0]
-    max_extension:  [20.0, 20.0, 8.0]
+    min_extension:  [-20.0, -20.0, -6.0]
+    max_extension:  [20.0, 20.0, 6.0]
 #-------------------------------------------------------------------------------
 # SAMPLING POLICY CONFIGURATION
 #   Sample space limited to 4 states: X, Y, Z, and Heading
