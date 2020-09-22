@@ -111,3 +111,9 @@
 ~~~xml
   <arg name="fcu_url" default="/dev/ttyACM0:921600" />
 ~~~
++ For SITL Gazebo simulation, Type below as [here](https://zhuanlan.zhihu.com/p/33075247)
+~~~shell
+  $ mavlink stream -u 14557 -s ATTITUDE -r 200
+  $ mavlink stream -u 14557 -s HIGHRES_IMU -r 200
+  $ mavlink stream -u 14557 -s LOCAL_POSITION_NED -r 200
+~~~
