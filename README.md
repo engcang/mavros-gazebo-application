@@ -100,11 +100,14 @@
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
 + add *HIGHRES_IMU* for imu/data and *ATTITUDE* for imu/data_raw
 ~~~shell
-mavlink start -d /dev/ttyACM0 -b 921600 -r 80000
-mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 200
-mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 200
+  mavlink start -d /dev/ttyACM0 -b 921600 -m onboard -r 80000
+  or
+  mavlink start -d /dev/ttyACM0 -b 921600 -r 80000
+  
+  mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 200
+  mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 200
 ~~~
 + edit **mavros/px4.launch** file to same *baudrate*
 ~~~xml
-	<arg name="fcu_url" default="/dev/ttyACM0:921600" />
+  <arg name="fcu_url" default="/dev/ttyACM0:921600" />
 ~~~
