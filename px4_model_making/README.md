@@ -5,7 +5,8 @@
 <br>
 
 ### ● Making new model
-  + refer [here](https://discuss.px4.io/t/create-custom-model-for-sitl/6700/4), belows are copy-pasted from the link.
+  + Refer [here, official homepage](https://dev.px4.io/v1.9.0/en/airframes/adding_a_new_frame.html)
+  + Refer [here](https://discuss.px4.io/t/create-custom-model-for-sitl/6700/4), belows are copy-pasted from the link.
     + Create a folder under Tools/sitl_gazebo/models for your model, let’s call it my_vehicle
     + Create the following files under Tools/sitl_gazebo/models/my_vehicle: model.config and my_vehicle.sdf 
       + these can be based off the iris or solo models in Tools/sitl_gazebo/models
