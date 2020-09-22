@@ -85,7 +85,7 @@
 
 <br>
 
-### add user to dialout group
+### Add user to dialout group
 + To use /dev/ttyACM as root admission
 ~~~shell
   # check the groups current user is engaged in
@@ -93,3 +93,8 @@
   # add to dialout group
   $ sudo adduser $USER dialout
 ~~~
+
+<br>
+
+### Change IMU rate
++ sdf
