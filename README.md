@@ -2,6 +2,8 @@
 + Need Ubuntu with ROS installed
 + Simple [Joystick](https://asia.playstation.com/ko-kr/accessories/dualshock4/) Controller code implemented
 
+## For real Drone - [here]()
+
 <br><br>
 
 ### Installation 
@@ -64,6 +66,10 @@
     $ python <clone directory>/scripts/mavors_joy_controller.py
 ~~~
 
+<br><br>
+
+## From here, configs can be used to real drone
+
 <br>
 
 ### Use without GPS
@@ -72,3 +78,12 @@
 + Change **EKF2_AID_MASK** parameter at QGroundControl
   + Uncheck *use GPS*
   + Check *vision position fusion* and *vision yaw fusion*
+
+### add user to dialout group
++ To use /dev/ttyACM as root admission
+~~~shell
+  # check the groups current user is engaged in
+  $ id -Gn
+  # add to dialout group
+  $ sudo adduser $USER dialout
+~~~
