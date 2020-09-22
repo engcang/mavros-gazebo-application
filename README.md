@@ -100,12 +100,20 @@
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
 + add *HIGHRES_IMU* for imu/data_raw and *ATTITUDE* for imu/data
 ~~~shell
-  mavlink start -d /dev/ttyACM0 -b 921600 -m onboard -r 80000
-  or
-  mavlink start -d /dev/ttyACM0 -b 921600 -r 80000
-  
-  mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 200
-  mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 200
+  #!nsh
+  mavlink start -b 921600 -d /dev/ttyACM0 -m onboard
+  mavlink stream -d /dev/ttyACM0 -s PARAM_VALUE -r 200
+  usleep 100000
+  mavlink stream -d /dev/ttyACM0 -s NAMED_VALUE_FLOAT -r 10
+  usleep 100000
+  mavlink stream -d /dev/ttyACM0 -s OPTICAL_FLOW -r 50
+  usleep 100000
+  mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 150
+  usleep 100000
+  mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 150
+  usleep 100000
+  mavlink stream -d /dev/ttyACM0 -s LOCAL_POSITION_NED -r 10
+  usleep 100000
 ~~~
 + edit **mavros/px4.launch** file to same *baudrate*
 ~~~xml
