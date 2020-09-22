@@ -2,7 +2,7 @@
 + Need Ubuntu with ROS installed
 + Simple [Joystick](https://asia.playstation.com/ko-kr/accessories/dualshock4/) Controller code implemented
 
-## For real Drone - [here]()
+## For real Drone - [here](#from-here-configs-can-be-used-to-real-drone)
 
 <br><br>
 
@@ -78,6 +78,12 @@
 + Change **EKF2_AID_MASK** parameter at QGroundControl
   + Uncheck *use GPS*
   + Check *vision position fusion* and *vision yaw fusion*
++ Change **EKF2_HGT_MODE** parameter at QGC
+  + Set to Vision
++ Change **EKF2_EV_POS_X, EKF2_EV_POS_Y, EKF2_EV_POS_Z** at QGC
+  + ***tf body_T_cam***
+
+<br>
 
 ### add user to dialout group
 + To use /dev/ttyACM as root admission
