@@ -98,7 +98,7 @@
 
 ### Change IMU rate
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
-+ add *HIGHRES_IMU* for imu/data and *ATTITUDE* for imu/data_raw
++ add *HIGHRES_IMU* for imu/data_raw and *ATTITUDE* for imu/data
 ~~~shell
   mavlink start -d /dev/ttyACM0 -b 921600 -m onboard -r 80000
   or
