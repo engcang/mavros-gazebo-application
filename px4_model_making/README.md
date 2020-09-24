@@ -28,7 +28,7 @@
 <br>
 
 ### ● Motor
-  + Refer [here](https://github.com/PX4/sitl_gazebo/issues/110) and [here](https://discuss.px4.io/t/motor-power-output-sitl/1661)
+  + Refer [here](https://github.com/PX4/sitl_gazebo/issues/110)
   + Need Thrust Curver using [this kind of device](https://www.banggood.com/Lantian-RC-6-40V-Multifuntional-Motor-ESC-Propeller-Tester-for-RC-Drone-p-1299859.html?cur_warehouse=CN)
   + Edit this part
 ~~~xml
