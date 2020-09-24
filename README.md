@@ -79,7 +79,7 @@
   + Uncheck *use GPS*
   + Check *vision position fusion* and *vision yaw fusion*
 + Change **EKF2_HGT_MODE** parameter at QGC
-  + Set to Vision
+  + Set to Vision or 1D LiDAR
 + Change **EKF2_EV_POS_X, EKF2_EV_POS_Y, EKF2_EV_POS_Z** at QGC
   + ***tf body_T_cam***
 
