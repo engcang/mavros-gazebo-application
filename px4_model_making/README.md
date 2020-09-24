@@ -1,6 +1,6 @@
 ## ● Making new models requires 
-  + Model making
-  + gain tuning
+  + Model making - mass, appearance(collision), inertia, motor specification
+  + Gain tuning
 
 <br>
 
@@ -27,9 +27,11 @@
 
 <br>
 
+### ● Motor
+  + Refer [here](https://github.com/PX4/sitl_gazebo/issues/110)
+
 ### ● Gain tuning
   + refer [here](https://docs.px4.io/v1.9.0/en/config_mc/pid_tuning_guide_multicopter.html)
 
-
-### Airframe
+### ● Airframe
   + [here](https://dev.px4.io/v1.9.0/en/airframes/airframe_reference.html)
