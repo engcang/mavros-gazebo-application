@@ -79,10 +79,15 @@
   + Uncheck *use GPS*
   + Check *vision position fusion* and *vision yaw fusion*
 + Change **EKF2_HGT_MODE** parameter at QGC
-  + Set to Vision or 1D LiDAR
+  + Set to Vision or Range (1D LiDAR, Altitude laser sensor)
 + Change **EKF2_EV_POS_X, EKF2_EV_POS_Y, EKF2_EV_POS_Z** at QGC
   + ***tf body_T_cam***
 
+<br>
+
++ If using 1D LiDAR altitude sensor, Check
+  + **EKF2_HGT_MODE**, **EKF2_RNG_AID**, and **SENS_TFMINI_CFG**
+  + Also check **EKF2_RNG_A_HMAX** and **EKF2_RNG_NOISE**
 <br>
 
 ### Add user to dialout group
