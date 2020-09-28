@@ -76,8 +76,8 @@
 + check [here](https://dev.px4.io/v1.9.0/en/ros/external_position_estimation.html)
 + Publish vision data e.g. VIO as **geometry_msgs/PoseStamped** type message into topic **/mavros/vision_pose/pose**
 + Change **EKF2_AID_MASK** parameter at QGroundControl
-  + Uncheck *use GPS*
-  + Check *vision position fusion* and *vision yaw fusion*
+  + Uncheck **use GPS**
+  + Check **vision position fusion** and **vision yaw fusion**, consider **vision velocity fusion** too.
 + Change **EKF2_HGT_MODE** parameter at QGC
   + Set to Vision or Range (1D LiDAR, Altitude laser sensor)
 + Change **EKF2_EV_POS_X, EKF2_EV_POS_Y, EKF2_EV_POS_Z** at QGC
