@@ -23,7 +23,6 @@
 <br>
 
 ### ● Motor
-  + Refer [here](https://github.com/PX4/sitl_gazebo/issues/110)
   + Need Thrust Curver using [this kind of device](https://www.banggood.com/Lantian-RC-6-40V-Multifuntional-Motor-ESC-Propeller-Tester-for-RC-Drone-p-1299859.html?cur_warehouse=CN)
   + Edit this part
 ~~~xml
@@ -45,12 +44,12 @@
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
 ~~~
+  + Refer [here](https://github.com/PX4/sitl_gazebo/issues/110)
 ~~~
 Ω or Max Rotational Velocity = Kv * Max Applied Voltage * Max Motor Efficiency * 2π / 60
-Motor Constant = Thrust / (Ω) ²
-Moment Constant = 60 / (2π * Kv)
 Rotor Drag Coefficient = Thrust / (ρ * (Kv * Max Applied Voltage * Max Motor Efficiency / 60) ² * Propeller diameter ⁴)
-Rolling Moment Coefficient = Using SST turbulence model from reference, and bent/round wings/propellers: ~0.0220 for angle of attack smaller than 16 degrees - I'm keeping this defaulted to 1E-06 for now.
+Rolling Moment Coefficient = Using SST turbulence model from reference, and bent/round wings/propellers: ~0.0220 for angle of attack smaller than 16 degrees 
+-> I'm keeping this defaulted to 1E-06 for now.
 
 where,
 Kv [RPM/V]
@@ -58,9 +57,9 @@ Max Thrust [N]
 Max Applied Voltage [V]
 Ω Rotor angular velocity [rad/s]
 ρ Air density at 20ºC: 1.2041 [kg/m³]
-
-The Motor Time Constant is still something I don't know how to get it.
 ~~~
+  + and [this](https://github.com/mvernacc/gazebo_motor_model_docs/blob/master/notes.pdf)
+    + for *motor_constant* and *moment_constant*
 
 ### ● Gain tuning
   + refer [here](https://docs.px4.io/v1.9.0/en/config_mc/pid_tuning_guide_multicopter.html)
