@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# @name 380 Hanjeon Quadrotor
+#
+# @type Quadrotor X
+# @class Copter
+#
+# @output MAIN1 motor 1
+# @output MAIN2 motor 2
+# @output MAIN3 motor 3
+# @output MAIN4 motor 4
+#
+# @maintainer EungChang Mason <eungchang_mason@kaist.ac.kr>
+#
+
+sh /etc/init.d/rc.mc_defaults
+
+set MIXER quad_x
+set PWM_OUT 1234
+
+if [ $AUTOCNF = yes ]
+then
+	# TODO tune roll/pitch separately
+	param set MC_ROLL_P 7
+	param set MC_ROLLRATE_P 0.15
+	param set MC_ROLLRATE_I 0.05
+	param set MC_ROLLRATE_D 0.004
+	param set MC_PITCH_P 7
+	param set MC_PITCHRATE_P 0.15
+	param set MC_PITCHRATE_I 0.05
+	param set MC_PITCHRATE_D 0.004
+	param set MC_YAW_P 2.5
+	param set MC_YAWRATE_P 0.25
+	param set MC_YAWRATE_I 0.25
+	param set MC_YAWRATE_D 0
+
+	param set BAT_V_DIV 12.27559
+	param set BAT_A_PER_V 15.39103
+
+#	param set PWM_MIN 1230
+fi
