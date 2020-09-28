@@ -6,6 +6,7 @@
 
 ### ● Making new model
   + Refer [here, official homepage](https://dev.px4.io/v1.9.0/en/airframes/adding_a_new_frame.html)
+    + For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at ROMFS/px4fmu_common/init.d.
   + Refer [here](https://discuss.px4.io/t/create-custom-model-for-sitl/6700/4), belows are copy-pasted from the link.
     + Create an **airframe file under ROMFS/px4fmu_common/init.d-posix**
     + give it a number and name it number_my_vehicle
