@@ -34,6 +34,7 @@ $ mv libmav_msgs.so libmav_msgs.so.backup
 ~~~
 
 <br>
+
 ##### Cooperation with Kobuki
 ~~~shell
   $ sudo apt-get install pyqt5-dev-tools ros-melodic-yocs-* ros-melodic-ecl* ros-melodic-kobuki-ftdi ros-melodic-ar-track-alvar-msgs
