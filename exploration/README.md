@@ -47,4 +47,4 @@ $ mv libmav_msgs.so libmav_msgs.so.backup
   $ git clone https://github.com/yujinrobot/kobuki
   $ sudo rm -r kobuki/kobuki_auto_docking
   $ git clone https://github.com/yujinrobot/kobuki_desktop
-~~~shell
+~~~
