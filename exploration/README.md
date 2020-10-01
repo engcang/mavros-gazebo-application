@@ -32,3 +32,18 @@ $ mv libmav_msgs.so libmav_msgs.so.backup
   </world>
 </sdf>
 ~~~
+
+<br>
+##### Cooperation with Kobuki
+~~~shell
+  $ sudo apt-get install pyqt5-dev-tools ros-melodic-yocs-* ros-melodic-ecl* ros-melodic-kobuki-ftdi ros-melodic-ar-track-alvar-msgs
+  $ cd ~/workspace_src
+  
+  # git checkout -b melodic for every repos.
+  $ git clone https://github.com/yujinrobot/kobuki_msgs
+  $ git clone https://github.com/yujinrobot/kobuki_core
+  $ sudo rm -r kobuki_core/kobuki_ftdi
+  $ git clone https://github.com/yujinrobot/kobuki
+  $ sudo rm -r kobuki/kobuki_auto_docking
+  $ git clone https://github.com/yujinrobot/kobuki_desktop
+~~~shell
