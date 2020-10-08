@@ -4,7 +4,7 @@
   $ sudo apt-get install pyqt5-dev-tools ros-melodic-yocs-* ros-melodic-ecl* ros-melodic-kobuki-ftdi ros-melodic-ar-track-alvar-msgs
   $ cd ~/workspace_src
   
-  # git checkout -b melodic for every repos.
+  # git checkout origin melodic for every repos.
   $ git clone https://github.com/yujinrobot/kobuki_msgs
   $ git clone https://github.com/yujinrobot/kobuki_core
   $ sudo rm -r kobuki_core/kobuki_ftdi
