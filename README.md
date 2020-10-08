@@ -29,7 +29,8 @@
     
     $ DONT_RUN=1 make px4_sitl_default gazebo
 
-    # when undefined iginition error, $ sudo apt upgrade libignition-math4
+    # when undefined iginition error (gazebo: symbol lookup error: /usr/lib/x86_64-linux-gnu/libgazebo_common.so.9: undefined symbol: ZN8ignition10fuel_tools12ClientConfi..........
+    # $ sudo apt upgrade libignition-math4
     
     $ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
     $ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
