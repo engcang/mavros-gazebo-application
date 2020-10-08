@@ -63,8 +63,9 @@
     $ python <clone directory>/python_offb.py
 ~~~
 
+<br>
 
-### Mission
+## Mission / Joystick Controller - supports [Kobuki](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
 + use Joystick to manually control -> it supports **mode 1,2** and **Velocity/Attitude/Rate control**
 ~~~shell
