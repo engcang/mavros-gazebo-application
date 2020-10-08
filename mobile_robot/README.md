@@ -15,3 +15,7 @@
 + Launch Gazebo with Kobuki
   + Include or launch ***kobuki_desktop/kobuki_gazebo/launch/includes/robot.launch.xml*** with world
   + Edit ***kobuki/kobuki_description/urdf/kobuki.urdf.xacro***
+  
+<br>
+  
+## Joystick controller implemented [here](https://github.com/engcang/mavros-gazebo-application/blob/master/README.md#mission--joystick-controller---supports-kobuki)
