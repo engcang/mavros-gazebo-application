@@ -215,8 +215,7 @@ def input(rbt):
             print("Angle(Degree): roll: %.2f pitch: %.2f yaw: %.2f \n"%(rbt.roll/np.pi*180, rbt.pitch/np.pi*180, rbt.yaw/np.pi*180)) #radian : +-pi
     else:
         k_vel_input = Twist()
-        k_vel_input.linear.x= rbt.joy.axes[4] #*cos(rbt.yaw) - ( rbt.joy.axes[3]*max_vel_y)*sin(rbt.yaw)
-        k_vel_input.linear.y= rbt.joy.axes[3] #*cos(rbt.yaw) + ( rbt.joy.axes[1]*max_vel_x)*sin(rbt.yaw)
+        k_vel_input.linear.x= rbt.joy.axes[4]
         k_vel_input.angular.z = yaw_rate*(rbt.joy.axes[0])
 
         rbt.kobuk_vel_pub.publish(k_vel_input)
