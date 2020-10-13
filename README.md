@@ -80,9 +80,9 @@
 <br>
 
 ### Use without GPS
+##### VINS-Fusion for PX4 with Masking [here](https://github.com/engcang/vins-application/tree/master/vins-fusion-px4)
 + check [here](https://dev.px4.io/v1.9.0/en/ros/external_position_estimation.html)
 + Publish vision data e.g. VIO as **geometry_msgs/PoseStamped** type message into topic **/mavros/vision_pose/pose**
-+ VINS-Fusion for PX4 with Masking [here](https://github.com/engcang/vins-application/tree/master/vins-fusion-px4)
 + Change **EKF2_AID_MASK** parameter at QGroundControl
   + Uncheck **use GPS**
   + Check **vision position fusion** and **vision yaw fusion**, consider **vision velocity fusion** too.
