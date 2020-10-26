@@ -79,8 +79,19 @@
 
 <br>
 
-### Use without GPS
-##### VINS-Fusion for PX4 with Masking [here](https://github.com/engcang/vins-application/tree/master/vins-fusion-px4)
+## Use without GPS
+#### Visual Inertial Odometry (VIO) · PX4 User Guide - [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
+### T265 Camera for PX4
++ Guide [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
++ ***tf*** is needed when attached with different direction
+    + edit *launch* file
+~~~xml
+    <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_cameraPose" args="0 0 0 0 1.5708 0 base_link camera_pose_frame 1000"/>
+    <!-- when T265 is attached upward -->
+~~~
+<br>
+
+### VINS-Fusion for PX4 with Masking [here](https://github.com/engcang/vins-application/tree/master/vins-fusion-px4)
 + check [here](https://dev.px4.io/v1.9.0/en/ros/external_position_estimation.html)
 + Publish vision data e.g. VIO as **geometry_msgs/PoseStamped** type message into topic **/mavros/vision_pose/pose**
 + Change **EKF2_AID_MASK** parameter at QGroundControl
@@ -96,7 +107,12 @@
 + If using 1D LiDAR altitude sensor, Check
   + **EKF2_HGT_MODE**, **EKF2_RNG_AID**, and **SENS_TFMINI_CFG**
   + Also check **EKF2_RNG_A_HMAX** and **EKF2_RNG_NOISE**
+  
 <br>
+
+
+<br><br>
+
 
 ### Add user to dialout group
 + To use /dev/ttyACM as root admission
