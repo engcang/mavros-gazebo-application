@@ -86,7 +86,7 @@
 + ***tf*** is needed when attached with different direction
     + edit *launch* file
 ~~~xml
-    <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_cameraPose" args="0 0 0 0 1.5708 0 base_link camera_pose_frame 1000"/>
+    <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_cameraPose" args="0 0 0 0 1.5708 0 t265_pose_frame test 1000"/>
     <!-- when T265 is attached upward -->
 ~~~
 <br>
