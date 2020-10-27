@@ -128,6 +128,7 @@
 
 ### Change IMU rate
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
++ Or place **etc/extras.txt** file **in the SD card** of Pixhawk
 + add *HIGHRES_IMU* for imu/data_raw and *ATTITUDE* for imu/data
 ~~~shell
   #!nsh
