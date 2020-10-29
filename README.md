@@ -126,7 +126,7 @@
 
 <br>
 
-### Change IMU rate
+### Change IMU rate for actual Drones
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
 + Or place **etc/extras.txt** file **in the SD card** of Pixhawk
 + add *HIGHRES_IMU* for imu/data_raw and *ATTITUDE* for imu/data
@@ -150,10 +150,41 @@
 ~~~xml
   <arg name="fcu_url" default="/dev/ttyACM0:921600" />
 ~~~
-+ For SITL Gazebo simulation, Type below as [here](https://zhuanlan.zhihu.com/p/33075247)
-+ Or, Edit the rates in **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** 
-~~~shell
-  $ mavlink stream -u 14557 -s ATTITUDE -r 200
-  $ mavlink stream -u 14557 -s HIGHRES_IMU -r 200
-  $ mavlink stream -u 14557 -s LOCAL_POSITION_NED -r 200
-~~~
+
+<br>
+<br>
+
+### Change IMU rate for SITL
++ for ***ROS Topics***
+    + Edit the rates in **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L290)
+    ~~~shell
+    mavlink start -x -u $udp_offboard_port_local -r 4000000 -m onboard -o $udp_offboard_port_remote
+    mavlink stream -r 100 -s LOCAL_POSITION_NED -u $udp_offboard_port_local
+    mavlink stream -r 100 -s HIGHRES_IMU -u $udp_offboard_port_local
+    mavlink stream -r 100 -s ATTITUDE -u $udp_offboard_port_local
+    mavlink stream -r 100 -s ATTITUDE_QUATERNION -u $udp_offboard_port_local
+    ~~~
++ for ***QGC*** Mavlink Inspector
+    + Edit the same **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L275)
+    ~~~shell
+    # GCS link
+    #################### -> This block is for Mavlink in QGC
+    mavlink start -x -u $udp_gcs_port_local -r 4000000
+    mavlink stream -r 50 -s POSITION_TARGET_LOCAL_NED -u $udp_gcs_port_local
+    mavlink stream -r 100 -s LOCAL_POSITION_NED -u $udp_gcs_port_local
+    mavlink stream -r 50 -s GLOBAL_POSITION_INT -u $udp_gcs_port_local
+    mavlink stream -r 100 -s HIGHRES_IMU -u $udp_gcs_port_local
+    mavlink stream -r 100 -s ATTITUDE -u $udp_gcs_port_local
+    mavlink stream -r 100 -s ATTITUDE_QUATERNION -u $udp_gcs_port_local
+    mavlink stream -r 100 -s ATTITUDE_TARGET -u $udp_gcs_port_local
+    mavlink stream -r 50 -s SERVO_OUTPUT_RAW_0 -u $udp_gcs_port_local
+    mavlink stream -r 20 -s RC_CHANNELS -u $udp_gcs_port_local
+    mavlink stream -r 10 -s OPTICAL_FLOW_RAD -u $udp_gcs_port_local
+    ~~~
+
+    + Or type below as [here](https://zhuanlan.zhihu.com/p/33075247)
+    ~~~shell
+      $ mavlink stream -u 14557 -s ATTITUDE -r 200
+      $ mavlink stream -u 14557 -s HIGHRES_IMU -r 200
+      $ mavlink stream -u 14557 -s LOCAL_POSITION_NED -r 200
+    ~~~
