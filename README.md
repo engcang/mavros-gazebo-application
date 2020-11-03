@@ -158,6 +158,7 @@
 + for ***ROS Topics***
     + Edit the rates in **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L290)
     ~~~shell
+    # API/Offboard link
     mavlink start -x -u $udp_offboard_port_local -r 4000000 -m onboard -o $udp_offboard_port_remote
     mavlink stream -r 100 -s LOCAL_POSITION_NED -u $udp_offboard_port_local
     mavlink stream -r 100 -s HIGHRES_IMU -u $udp_offboard_port_local
