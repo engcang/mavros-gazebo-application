@@ -1,7 +1,8 @@
 ## Exploration, Active SLAM
 + Mainly used RGB-D camera Intel Realsense D435i
   + Installation : [here](https://engcang.github.io/d435i/)
-  + Tuning Guide : [here1](https://www.intel.com/content/dam/support/us/en/documents/emerging-technologies/intel-realsense-technology/BKMs_Tuning_RealSense_D4xx_Cam.pdf) [here2](https://github.com/IntelRealSense/librealsense/issues/3139) [here3](https://github.com/IntelRealSense/librealsense/wiki/D400-Series-Visual-Presets)
+  + Tuning Guide : [here](https://engcang.github.io/d435i2/)
+
 <br>
 <br>
 
