@@ -1,5 +1,7 @@
 ## Exploration, Active SLAM
-
++ Mainly used RGB-D camera Intel Realsense D435i
++ Installation : [here](https://github.com/engcang/VINS-application/tree/Intel-D435i#-necessary-for-ros-too)
++ Tuning Guide : [here1](https://www.intel.com/content/dam/support/us/en/documents/emerging-technologies/intel-realsense-technology/BKMs_Tuning_RealSense_D4xx_Cam.pdf) [here2](https://github.com/IntelRealSense/librealsense/issues/3139)
 <br>
 <br>
 
