@@ -80,7 +80,7 @@
 
 <br>
 
-## Use without GPS
+## Use without GPS - result clip [here](https://engcang.github.io/mavros_vision_pose/)
 #### Visual Inertial Odometry (VIO) · PX4 User Guide - [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
 ### T265 Camera for PX4
 + Guide [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
