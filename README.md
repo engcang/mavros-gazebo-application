@@ -157,6 +157,8 @@
 ### Change IMU rate for SITL
 + for ***ROS Topics***
     + Edit the rates in **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L290)
+    + and then rebuild the **Firmware** with `$ DONT_RUN=1 make px4_sitl_default gazebo`
+    + or simply edit the rates in **Firmware/build/px4_sitl_default/etc/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L290)
     ~~~shell
     # API/Offboard link
     mavlink start -x -u $udp_offboard_port_local -r 4000000 -m onboard -o $udp_offboard_port_remote
@@ -167,6 +169,8 @@
     ~~~
 + for ***QGC*** Mavlink Inspector
     + Edit the same **Firmware/ROMFS/px4fmu_common/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L275)
+    + and then rebuild the **Firmware** with `$ DONT_RUN=1 make px4_sitl_default gazebo`
+    + or simply edit the rates in **Firmware/build/px4_sitl_default/etc/init.d-posix/rcS** as [here](https://github.com/engcang/mavros-gazebo-application/blob/master/rcS#L290)
     ~~~shell
     # GCS link
     #################### -> This block is for Mavlink in QGC
