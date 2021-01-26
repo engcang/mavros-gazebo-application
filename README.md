@@ -12,7 +12,8 @@
 ~~~shell
     $ sudo apt-get install ros-<distro>-mavros ros-<distro>-mavros-extras
     $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-    $ ./install_geographiclib_datasets.sh
+    $ chmod +x install_geographiclib_datasets.sh
+    $ sudo ./install_geographiclib_datasets.sh
     $ cd ~/ && git clone https://github.com/PX4/Firmware.git
     
     #when Firmware/Tools/sitl_gazebo folder is empty, $ cd Firmware && git submodule update --init --recursive
