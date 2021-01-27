@@ -129,7 +129,7 @@
 
 ### Change IMU rate for actual Drones
 + **/fs/microsd/etc/extras.txt** file from QGC's nutshell
-+ Or place **etc/extras.txt** file **in the SD card** of Pixhawk
++ Or place **etc/extras.txt** file **in the SD card** of Pixhawk as **below** or as [this file](https://github.com/engcang/mavros-gazebo-application/blob/master/extras.txt)
 + add *HIGHRES_IMU* for imu/data_raw and *ATTITUDE* for imu/data
 ~~~shell
   #!nsh
