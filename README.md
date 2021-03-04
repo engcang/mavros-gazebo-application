@@ -54,6 +54,14 @@
 
 <br><br>
 
+### Setting faster simulator
++ Referred this [viedeo](https://youtu.be/1Bs98kOwuK4)
+~~~shell
+    $ export PX4_SIM_SPEED_FACTOR=<how many times faster you want>
+~~~
+
+<br><br>
+
 ### Execution
 + To run Gazebo with default setup, with ROS
 ~~~shell
