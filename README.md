@@ -1,9 +1,21 @@
-# MAVROS-Gazebo simulation build and application
+# MAVROS-Gazebo simulation(SITL) build and application + mavros setup (also applicable for real drones)
 + Need Ubuntu with ROS installed
 + Simple [Joystick](https://asia.playstation.com/ko-kr/accessories/dualshock4/) Controller code implemented
 
 ## Result Clips - [1](https://youtu.be/5t-6g7UWA7o),  [2](https://youtu.be/t3ysB8Y_GCU),  [3](https://youtu.be/6K-QSb1Aq5E),  [4](https://youtu.be/yjt3zLSrg6o),  [5](https://youtu.be/ifB_i0f9hj4)
-## For real Drone - [here](#from-here-configs-can-be-used-to-real-drone)
+
+<br>
+<br>
+
+## Index
+1. Installation - [here](#installation)
+2. Joystick controller code - [here](#mission--joystick-controller---supports-kobuki-and-jackal)
+3. For real Drone - [here](#from-here-configs-can-be-used-to-real-drone)
+4. Fly without GPS - [here](#fly-without-gps---result-clip-here)
+5. Change IMU rate for real drones / SITL - [here](#change-imu-rate-for-actual-drones) / [here](#change-imu-rate-for-sitl)
+6. Making new PX4 model(airframe) for SITL - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/px4_model_making)
+7. Making new Gazebo world and Gazebo model - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/world_making)
+8. Use mobile robots(Kobuki, Jackal) for Gazebo - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
 
 <br><br>
 
@@ -75,7 +87,7 @@
 
 <br>
 
-## Mission / Joystick Controller - supports [Kobuki](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
+## Mission / Joystick Controller - supports [Kobuki and Jackal](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
 + use Joystick to manually control -> it supports **mode 1,2** and **Velocity/Attitude/Rate control**
 ~~~shell
@@ -89,7 +101,7 @@
 
 <br>
 
-## Use without GPS - result clip [here](https://engcang.github.io/mavros_vision_pose/)
+## Fly without GPS - result clip [here](https://engcang.github.io/mavros_vision_pose/)
 #### Visual Inertial Odometry (VIO) · PX4 User Guide - [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
 ### T265 Camera for PX4
 + Guide [here](https://docs.px4.io/master/en/computer_vision/visual_inertial_odometry.html)
