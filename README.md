@@ -8,14 +8,13 @@
 <br>
 
 ## Index
-1. Installation - [here](#installation)
-2. Joystick controller code - [here](#mission--joystick-controller---supports-kobuki-and-jackal)
-3. For real Drone - [here](#from-here-configs-can-be-used-to-real-drone)
-4. Fly without GPS - [here](#fly-without-gps---result-clip-here)
-5. Change IMU rate for real drones / SITL - [here](#change-imu-rate-for-actual-drones) / [here](#change-imu-rate-for-sitl)
-6. Making new PX4 model(airframe) for SITL - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/px4_model_making)
-7. Making new Gazebo world and Gazebo model - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/world_making)
-8. Use mobile robots(Kobuki, Jackal) for Gazebo - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
+### 1. Installation - [here](#installation)
+### 2. Joystick controller code - [here](#mission--joystick-controller---supports-kobuki-and-jackal)
+### 3. Fly without GPS - [here](#fly-without-gps---result-clip-here)
+### 4. Change IMU rate for real drones / SITL - [here](#change-imu-rate-for-actual-drones) / [here](#change-imu-rate-for-sitl)
+### 5. Making new PX4 model(airframe) for SITL - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/px4_model_making)
+### 6. Making new Gazebo world and Gazebo model - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/world_making)
+### 7. Use mobile robots(Kobuki, Jackal) for Gazebo - [here](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
 
 <br><br>
 
