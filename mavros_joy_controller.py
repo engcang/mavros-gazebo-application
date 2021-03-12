@@ -58,7 +58,8 @@ max_vel_z = 12
 class robot():
     def __init__(self):
         rospy.init_node('robot_controller', anonymous=True)
-        self.kobuk_vel_pub = rospy.Publisher('/mobile_base/commands/velocity', Twist, queue_size=10)
+        self.parent_frame_id = rospy.get_param("/mobile_robot_vel_topic", "/mobile_base/commands/velocity")
+        self.mobile_robot_vel_pub = rospy.Publisher(self.parent_frame_id, Twist, queue_size=10)
         self.local_vel_pub = rospy.Publisher('/mavros/setpoint_velocity/cmd_vel', TwistStamped, queue_size=10)
         self.angle_pub = rospy.Publisher('/mavros/setpoint_raw/attitude', AttitudeTarget, queue_size=10)
         self.rate_pub = rospy.Publisher('/mavros/setpoint_attitude/cmd_vel', TwistStamped, queue_size=10)
@@ -218,7 +219,7 @@ def input(rbt):
         k_vel_input.linear.x= rbt.joy.axes[4]
         k_vel_input.angular.z = yaw_rate*(rbt.joy.axes[0])
 
-        rbt.kobuk_vel_pub.publish(k_vel_input)
+        rbt.mobile_robot_vel_pub.publish(k_vel_input)
 
 ##############################################################################################
 
