@@ -88,7 +88,8 @@
 
 ## Mission / Joystick Controller - supports [Kobuki and Jackal](https://github.com/engcang/mavros-gazebo-application/tree/master/mobile_robot)
 + To use the other model with sensors => edit "models" param in mavros_posix.sitl.launch file
-+ use Joystick to manually control -> it supports **mode 1,2** and **Velocity/Attitude/Rate control**
++ use Joystick to manually control -> it supports **mode 1,2** and **Position/Rate control**
+    + Velocity/Attitude control are not supported anymore due to their error.
 ~~~shell
     $ git clone <this repository>
     $ python <clone directory>/scripts/mavors_joy_controller.py
