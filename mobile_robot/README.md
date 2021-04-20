@@ -1,7 +1,8 @@
 ## Cooperation with [Kobuki](http://kobuki.yujinrobot.com/), [kobuki wiki](http://wiki.ros.org/kobuki)
 + Installation
+<!--ros-melodic-kobuki-ftdi ros-melodic-ar-track-alvar-msgs-->
 ~~~shell
-  $ sudo apt-get install pyqt5-dev-tools ros-melodic-yocs-* ros-melodic-ecl* ros-melodic-kobuki-ftdi ros-melodic-ar-track-alvar-msgs
+  $ sudo apt-get install pyqt5-dev-tools ros-melodic-yocs-* ros-melodic-ecl*
   $ cd ~/workspace_src
   
   # git checkout melodic for every repos.
