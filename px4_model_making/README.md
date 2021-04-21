@@ -6,14 +6,17 @@
 
 ### ● Making new model
   + Refer [here, official homepage](https://dev.px4.io/v1.9.0/en/airframes/adding_a_new_frame.html)
-    + For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at ROMFS/px4fmu_common/init.d.
-  + Refer [here](https://discuss.px4.io/t/create-custom-model-for-sitl/6700/4), belows are copy-pasted from the link.
-    + Create an **airframe file under ROMFS/px4fmu_common/init.d-posix**
-    + give it a number and name it number_my_vehicle
+    + For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at ROMFS/px4fmu_common/init.d
+  + Refer [here](https://discuss.px4.io/t/create-custom-model-for-sitl/6700/4)
+    + Create an **airframe file under ROMFS/px4fmu_common/init.d-posix/airframes**
+      + give it a number and name it number_my_vehicle
+    + Add it in the `CMakeLists.txt` in **ROMFS/px4fmu_common/init.d-posix/airframes**
     + Add the airframe name to the file **platforms/posix/cmake/sitl_target.cmake** in the command set -> models …
   + Now you are free to tweak any of the model values in the SDF file and any of the controller gains in the airframe file.
   + You can launch SITL with your model with 
   ~~~shell
+  (when error) $ make clean
+  
   $ make px4_sitl gazebo_my_vehicle
   ~~~
   1. When increasing the mass of the vehicle, also increase the inertias. I found that Gazebo does not like really small inertias.
