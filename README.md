@@ -25,13 +25,10 @@
     $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     $ chmod +x install_geographiclib_datasets.sh
     $ sudo ./install_geographiclib_datasets.sh
-    $ cd ~/ && git clone https://github.com/PX4/Firmware.git
+    $ cd ~/ && git clone https://github.com/PX4/Firmware.git --recursive
     
-    #when Firmware/Tools/sitl_gazebo folder is empty, $ cd Firmware && git submodule update --init --recursive
-    
-    $ source Firmware/Tools/setup/ubuntu.sh
-    # if above makes errors, just run below instead
-    $ sudo apt-get install python-catkin-tools python-numpy python3-pip python3-numpy python3-empy python3-toml python3-packaging python3-jinja2
+    $ source Firmware/Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx
+    $ sudo apt-get install python-catkin-tools python-numpy python3-pip python3-numpy python3-empy python3-toml python3-packaging python3-jinja2 gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
 ~~~
 + To run, set up the path and environments
 ~~~shell
@@ -40,6 +37,8 @@
     # important!!
     $ sudo apt install ros-melodic-gazebo-plugins
     
+    $ export LANG=C.UTF-8
+    $ export LC_ALL=C.UTF-8
     $ DONT_RUN=1 make px4_sitl_default gazebo
 
     # when undefined iginition error (gazebo: symbol lookup error: /usr/lib/x86_64-linux-gnu/libgazebo_common.so.9: undefined symbol: ZN8ignition10fuel_tools12ClientConfi..........
