@@ -1,0 +1,1 @@
+ACTION=="add", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0032", ATTRS{manufacturer}=="3D Robotics", ATTRS{devpath}=="8.4.3", SYMLINK+="PX4"
