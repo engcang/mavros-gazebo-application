@@ -25,7 +25,11 @@
     $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     $ chmod +x install_geographiclib_datasets.sh
     $ sudo ./install_geographiclib_datasets.sh
-    $ cd ~/ && git clone https://github.com/PX4/PX4-Autopilot.git --recursive
+    
+    $ cd ~/ && git clone https://github.com/PX4/PX4-Autopilot.git
+    $ cd PX4-Autopilot
+    $ git reset --hard 96c7fe4978bab2af970a097f4898e024c2d33440
+    $ git submodule update --init --recursive
     
     $ source PX4-Autopilot/Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx
 ~~~
