@@ -25,17 +25,16 @@
     $ wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     $ chmod +x install_geographiclib_datasets.sh
     $ sudo ./install_geographiclib_datasets.sh
-    $ cd ~/ && git clone https://github.com/PX4/Firmware.git --recursive
+    $ cd ~/ && git clone https://github.com/PX4/PX4-Autopilot.git --recursive
     
-    $ source Firmware/Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx
-    $ sudo apt-get install python-catkin-tools python-numpy python3-pip python3-numpy python3-empy python3-toml python3-packaging python3-jinja2 gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
+    $ source PX4-Autopilot/Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx
 ~~~
 + To run, set up the path and environments
 ~~~shell
-    $ cd ~/Firmware
+    $ cd ~/PX4-Autopilot
     
     # important!!
-    $ sudo apt install ros-melodic-gazebo-plugins
+    $ sudo apt install ros-<distro>-gazebo-plugins
     
     $ export LANG=C.UTF-8
     $ export LC_ALL=C.UTF-8
@@ -51,15 +50,11 @@
 ~~~
 + To remember setup,
 ~~~shell
-    $ gedit ~/.bashrc
-    # Copy - past below and save, (path should be edited)
-    #PX4, mavros
-    export GAZEBO_PLUGIN_PATH=/home/<PCname>/Firmware/build/px4_sitl_default/build_gazebo
-    export GAZEBO_MODEL_PATH=/home/<PCname>/.gazebo/models:/home/<PCname>/Firmware/Tools/sitl_gazebo/models
-    export LD_LIBRARY_PATH=/home/<PCname>/catkin_ws/devel/lib:/opt/ros/melodic/lib:/home/<PCname>/Firmware/build/px4_sitl_default/build_gazebo
-
-    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/Firmware
-    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<PCname>/Firmware/Tools/sitl_gazebo
+$ echo "export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/$(uname -n)/PX4-Autopilot/Tools/sitl_gazebo/models" >> ~/.bashrc
+$ echo "export GAZEBO_PLUGIN_PATH=/home/$(uname -n)/PX4-Autopilot/build/px4_sitl_default/build_gazebo" >> ~/.bashrc
+$ echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/$(uname -n)/PX4-Autopilot/build/px4_sitl_default/build_gazebo" >> ~/.bashrc
+$ echo "export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/$(uname -n)/PX4-Autopilot:/home/$(uname -n)/PX4-Autopilot/Tools/sitl_gazebo" >> ~/.bashrc
+$ . ~/.bashrc
 ~~~
 
 <br><br>
