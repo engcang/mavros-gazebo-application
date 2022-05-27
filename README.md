@@ -154,15 +154,15 @@ $ . ~/.bashrc
   mavlink start -b 921600 -d /dev/ttyACM0 -m onboard
   mavlink stream -d /dev/ttyACM0 -s PARAM_VALUE -r 200
   usleep 100000
-  mavlink stream -d /dev/ttyACM0 -s NAMED_VALUE_FLOAT -r 10
+  mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 100
   usleep 100000
-  mavlink stream -d /dev/ttyACM0 -s OPTICAL_FLOW -r 50
+  mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 100
   usleep 100000
-  mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 150
+  mavlink stream -d /dev/ttyACM0 -s ATTITUDE_TARGET -r 100
   usleep 100000
-  mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 150
+  mavlink stream -d /dev/ttyACM0 -s ATTITUDE_QUATERNION -r 100
   usleep 100000
-  mavlink stream -d /dev/ttyACM0 -s LOCAL_POSITION_NED -r 10
+  mavlink stream -d /dev/ttyACM0 -s LOCAL_POSITION_NED -r 50
   usleep 100000
 ~~~
 + edit **mavros/px4.launch** file to same *baudrate*
