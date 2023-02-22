@@ -28,7 +28,7 @@
     
     $ cd ~/ && git clone https://github.com/PX4/PX4-Autopilot.git
     $ cd PX4-Autopilot
-    $ git reset --hard 96c7fe4978bab2af970a097f4898e024c2d33440
+    $ git reset --hard 6823cbc
     $ git submodule update --init --recursive
     
     $ source PX4-Autopilot/Tools/setup/ubuntu.sh --no-sim-tools --no-nuttx
@@ -60,6 +60,11 @@ $ echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/$(whoami)/PX4-Autopilot/bu
 $ echo "export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/$(whoami)/PX4-Autopilot:/home/$(whoami)/PX4-Autopilot/Tools/sitl_gazebo" >> ~/.bashrc
 $ . ~/.bashrc
 ~~~
+
+#### Note: failsafe, manual control lost
++ Install and run `QGroundControl` while running PX4-SITL
++ Vehicle parameter setup -> set `COM_RCL_EXCEPT` as 4 (only once)
+
 
 <br><br>
 
