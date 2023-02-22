@@ -38,7 +38,7 @@
     $ cd ~/PX4-Autopilot
     
     # important!!
-    $ sudo apt install ros-<distro>-gazebo-plugins
+    $ sudo apt install libgstreamer-plugins-base1.0-dev ros-<distro>-gazebo-plugins
     
     $ export LANG=C.UTF-8
     $ export LC_ALL=C.UTF-8
